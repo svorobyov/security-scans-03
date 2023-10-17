@@ -1,0 +1,32 @@
+# 2023-02-12
+
+# https://docs.github.com/rest/reference/actions#create-a-workflow-dispatch-event'
+
+name: "triggered-02"
+
+# on:
+#   push:
+#     branches: [ "main" ]
+on: workflow_dispatch
+
+jobs:
+  Triggered:
+    name: Triggered Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report Successful triggering
+        run: |
+          set -ux
+          echo "I have been successfully triggered at $(date)!"
+
+      - name: Conditional Bash 1
+        run: |
+          set -ux
+          echo "Bash 1"
+        if: ${{ '0' == '0' }}  # https://docs.github.com/en/actions/learn-github-actions/expressions
+
+      - name: Conditional Bash 2
+        run: |
+          set -ux
+          echo "Bash 2"
+        if: ${{ '1' == '0' }}
